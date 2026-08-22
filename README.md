@@ -20,14 +20,14 @@ Ogni push su `main` compila e pubblica automaticamente il gioco con GitHub Actio
 
 ## Il gioco
 
-Green Valley Guardians è un tower defense web originale ambientato in una valle fantasy. Costruisci guardiani lungo il percorso, scegli le priorità di bersaglio, migliora o vendi le torri e supera dieci ondate fino all'Armored Beetle King.
+Green Valley Guardians è un tower defense web originale ambientato in una valle fantasy. Costruisci guardiani lungo il percorso, scegli le priorità di bersaglio, migliora o vendi le torri e supera una campagna di 30 ondate.
 
 Il vertical slice offre una partita completa di circa 5–10 minuti:
 
-- mappa originale **Green Valley**;
-- 5 torri difensive, 3 nemici e 1 boss;
-- 3 mappe originali disponibili fin dall'inizio;
-- 10 wave data-driven;
+- 6 mappe originali disponibili fin dall'inizio;
+- 10 guardiani con ruoli offensivi, controllo e danno ad area;
+- 9 famiglie di mostri, inclusi nemici rapidi, corazzati e boss;
+- 30 wave data-driven con difficoltà progressiva;
 - gold, vite, ricompense e bonus wave;
 - proiettili che viaggiano realmente verso il bersaglio;
 - danno ad area, armatura e rallentamento;
@@ -37,11 +37,12 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 - selezione mappa predisposta per nuovi reami;
 - menu pausa con Resume, Restart e ritorno alla Home;
 - impostazioni persistenti per musica, SFX, mute, numeri danno e screen shake;
+- colonna sonora fantasy generata in tempo reale, regolabile e silenziabile;
 - interfaccia selezionabile in Italiano, Español o English;
 - profilo, XP e statistiche salvati localmente;
 - vittoria, sconfitta e pausa;
-- interfaccia responsive mobile-first.
-- gameplay con mappa dominante e barra verticale dei guardiani;
+- interfaccia responsive mobile-first;
+- gameplay con mappa dominante, barra verticale dei guardiani e upgrade in basso su mobile;
 
 ## Torri
 
@@ -52,6 +53,11 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 | Frost Crystal | 120 | Controllo e rallentamento | 10 danni, 145 range, slow 25% |
 | Ember Shrine | 145 | Danno magico ad area | 28 danni, splash 28 |
 | Storm Totem | 195 | Attacco magico a lunga gittata | 38 danni, 165 range |
+| Venom Bloom | 110 | Attacco rapido economico | 9 danni, 150 range, 1.6 attacchi/s |
+| Arcane Eye | 225 | Magia pesante a lunga gittata | 62 danni, 185 range |
+| Blast Forge | 205 | Esplosioni ad ampia area | 75 danni, splash 82 |
+| Thorn Nest | 95 | Raffica naturale molto rapida | 8 danni, 2.1 attacchi/s |
+| Solar Prism | 280 | Guardiano finale ad alta potenza | 90 danni, 210 range |
 
 Ogni torre può usare `FIRST`, `LAST`, `STRONGEST`, `WEAKEST` o `CLOSEST`. Gli upgrade aumentano progressivamente danno, gittata e cadenza; la vendita restituisce il 70% dell'investimento totale.
 
@@ -62,17 +68,21 @@ Ogni torre può usare `FIRST`, `LAST`, `STRONGEST`, `WEAKEST` o `CLOSEST`. Gli u
 | Purple Slime | 70 | 65 | 5 | Unità base bilanciata |
 | Runner Lizard | 45 | 125 | 7 | Rapido ma fragile |
 | Armored Beetle | 240 | 45 | 15 | Riduce del 25% il danno fisico |
-| Armored Beetle King | 2000 | 32 | 250 | Boss della wave 10 |
+| Ghost Wisp | 180 | 82 | 18 | Nemico etereo veloce |
+| Fire Beast | 520 | 68 | 32 | Assaltatore resistente |
+| Swarm Bugs | 35 | 145 | 3 | Sciame numeroso e rapidissimo |
+| Healer Mushroom | 650 | 42 | 42 | Mostro lento ad alta vitalità |
+| Stone Golem | 4200 | 27 | 400 | Boss finale corazzato |
 
 ## Come si gioca
 
-1. Seleziona una torre dalla barra inferiore.
+1. Seleziona una torre dalla barra laterale.
 2. Tocca o clicca una posizione libera.
 3. Premi **Start Wave**.
 4. Tocca una torre per cambiare targeting, migliorarla o venderla.
 5. Usa ×1, ×2 o ×3 per regolare la velocità.
 
-La preview verde indica una posizione valida; quella rossa segnala strada, sovrapposizioni o aree fuori mappa. Prima della partita si selezionano Green Valley e la difficoltà: Easy offre più risorse e nemici meno resistenti, Hard riduce vite e gold e aumenta gli HP nemici.
+La preview verde indica una posizione valida; quella rossa segnala strada, sovrapposizioni o aree fuori mappa. Prima della partita si sceglie una delle 6 mappe e la difficoltà: Easy offre più risorse e nemici meno resistenti, Hard riduce vite e gold e aumenta gli HP nemici.
 
 ## Specifiche tecniche
 
@@ -161,9 +171,6 @@ Il profilo conserva nickname, livello, XP, eliminazioni, partite, vittorie, wave
 ## Roadmap
 
 - rami di upgrade specializzati;
-- Fire, Lightning, Poison e Magic Tower;
-- Ghost Wisp, Fire Beast, Swarm Bugs, Healer Mushroom e Stone Golem;
-- audio e impostazioni complete;
 - modalità Endless;
 - nuove mappe fantasy;
 - autenticazione e classifiche online con Supabase.
@@ -174,11 +181,12 @@ Personaggi, nomi, mappa, interfaccia e asset sono originali. Il progetto usa esc
 
 ## Release
 
-**v0.1.0 — Vertical Slice**
+**v0.2.0 — Campaign Expansion**
 
-- partita completa da 10 wave;
-- tre torri e tre famiglie di nemici;
-- boss finale;
+- campagna completa da 30 wave;
+- 10 guardiani, 9 famiglie di mostri e 6 mappe;
+- musica continua con volume e mute;
+- pannello upgrade inferiore ottimizzato per mobile;
 - profilo e progressione locale;
 - deploy web automatico.
 
