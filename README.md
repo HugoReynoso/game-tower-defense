@@ -30,6 +30,9 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 - danno ad area, armatura e rallentamento;
 - upgrade, vendita e 5 priorità di targeting;
 - velocità ×1, ×2 e ×3;
+- selezione della difficoltà Easy, Normal o Hard prima della partita;
+- selezione mappa predisposta per nuovi reami;
+- menu pausa con Resume, Restart e ritorno alla Home;
 - profilo, XP e statistiche salvati localmente;
 - vittoria, sconfitta e pausa;
 - interfaccia responsive mobile-first.
@@ -61,7 +64,7 @@ Ogni torre può usare `FIRST`, `LAST`, `STRONGEST`, `WEAKEST` o `CLOSEST`. Gli u
 4. Tocca una torre per cambiare targeting, migliorarla o venderla.
 5. Usa ×1, ×2 o ×3 per regolare la velocità.
 
-La preview verde indica una posizione valida; quella rossa segnala strada, sovrapposizioni o aree fuori mappa.
+La preview verde indica una posizione valida; quella rossa segnala strada, sovrapposizioni o aree fuori mappa. Prima della partita si selezionano Green Valley e la difficoltà: Easy offre più risorse e nemici meno resistenti, Hard riduce vite e gold e aumenta gli HP nemici.
 
 ## Specifiche tecniche
 
