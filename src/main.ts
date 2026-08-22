@@ -1,0 +1,2 @@
+import Phaser from 'phaser';import './style.css';import {BootScene} from './game/scenes/BootScene';import {MenuScene} from './game/scenes/MenuScene';import {GameScene} from './game/scenes/GameScene';
+new Phaser.Game({type:Phaser.AUTO,parent:'app',backgroundColor:'#183f2d',dom:{createContainer:true},scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:1280,height:720},scene:[BootScene,MenuScene,GameScene],render:{antialias:true}});
