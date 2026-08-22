@@ -10,6 +10,8 @@
 
 > La demo è ottimizzata per smartphone e tablet. Durante il gameplay è consigliato l'orientamento landscape.
 
+Su dispositivi mobili l'ingresso in partita richiede automaticamente la modalità fullscreen e l'orientamento landscape quando il browser lo permette. In portrait viene mostrato un invito dedicato a ruotare il dispositivo; il layout supporta inoltre le safe area di iPhone e Android.
+
 ## Demo online
 
 **[hugoreynoso.github.io/game-tower-defense](https://hugoreynoso.github.io/game-tower-defense/)**
@@ -39,6 +41,7 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 - profilo, XP e statistiche salvati localmente;
 - vittoria, sconfitta e pausa;
 - interfaccia responsive mobile-first.
+- gameplay con mappa dominante e barra verticale dei guardiani;
 
 ## Torri
 
