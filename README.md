@@ -23,7 +23,8 @@ Green Valley Guardians è un tower defense web originale ambientato in una valle
 Il vertical slice offre una partita completa di circa 5–10 minuti:
 
 - mappa originale **Green Valley**;
-- 3 torri, 3 nemici e 1 boss;
+- 5 torri difensive, 3 nemici e 1 boss;
+- 3 mappe originali disponibili fin dall'inizio;
 - 10 wave data-driven;
 - gold, vite, ricompense e bonus wave;
 - proiettili che viaggiano realmente verso il bersaglio;
@@ -33,6 +34,8 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 - selezione della difficoltà Easy, Normal o Hard prima della partita;
 - selezione mappa predisposta per nuovi reami;
 - menu pausa con Resume, Restart e ritorno alla Home;
+- impostazioni persistenti per musica, SFX, mute, numeri danno e screen shake;
+- interfaccia selezionabile in Italiano, Español o English;
 - profilo, XP e statistiche salvati localmente;
 - vittoria, sconfitta e pausa;
 - interfaccia responsive mobile-first.
@@ -41,9 +44,11 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 
 | Torre | Costo | Ruolo | Statistiche base |
 | --- | ---: | --- | --- |
-| Ranger | 100 | Attacco rapido single-target | 12 danni, 150 range, 1 attacco/s |
-| Bombard | 250 | Danno fisico ad area | 40 danni, 130 range, splash 55 |
-| Frost Crystal | 175 | Controllo e rallentamento | 8 danni, 140 range, slow 25% |
+| Ranger | 75 | Attacco rapido single-target | 14 danni, 155 range, 1.1 attacchi/s |
+| Bombard | 165 | Danno fisico ad area | 46 danni, 135 range, splash 62 |
+| Frost Crystal | 120 | Controllo e rallentamento | 10 danni, 145 range, slow 25% |
+| Ember Shrine | 145 | Danno magico ad area | 28 danni, splash 28 |
+| Storm Totem | 195 | Attacco magico a lunga gittata | 38 danni, 165 range |
 
 Ogni torre può usare `FIRST`, `LAST`, `STRONGEST`, `WEAKEST` o `CLOSEST`. Gli upgrade aumentano progressivamente danno, gittata e cadenza; la vendita restituisce il 70% dell'investimento totale.
 
