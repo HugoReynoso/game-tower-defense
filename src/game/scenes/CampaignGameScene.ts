@@ -27,12 +27,15 @@ export class CampaignGameScene extends ModernGameScene {
   }
 
   drawMap() {
-    const themes={
-      forest:{top:0xa9df70,bottom:0x63b954,road:0xb87949,edge:0xf0d087,water:0x43afc5,accent:0x2d7b47},
-      desert:{top:0xf0db87,bottom:0xd2ae5d,road:0x93624c,edge:0xffd77e,water:0x45a9c6,accent:0xa46535},
-      marsh:{top:0x77ae7e,bottom:0x477f68,road:0x776153,edge:0xc8ba8b,water:0x367f91,accent:0x315f58},
-    } as const;
-    const c=themes[MAPS[this.mapId].theme];
+    const themes:Record<MapId,{top:number,bottom:number,road:number,edge:number,water:number,accent:number,detail:number}>={
+      'green-valley':{top:0xa9df70,bottom:0x63b954,road:0xb87949,edge:0xf0d087,water:0x43afc5,accent:0x2d7b47,detail:0x78c65c},
+      'sunstone-loop':{top:0xf5d77c,bottom:0xc89149,road:0x93624c,edge:0xffdf86,water:0x3f9dbb,accent:0xa46535,detail:0xd8913f},
+      'moonlit-marsh':{top:0x6da789,bottom:0x395f61,road:0x665b59,edge:0xaec5a3,water:0x315f7b,accent:0x294c4e,detail:0x5e8c74},
+      'crystal-cavern':{top:0x7387cc,bottom:0x303766,road:0x585374,edge:0x8ee9f5,water:0x315f89,accent:0x5445a4,detail:0x59b9d0},
+      'volcano-pass':{top:0xb95738,bottom:0x55252a,road:0x49373b,edge:0xff8250,water:0xd94a2c,accent:0x6f2026,detail:0xd65a35},
+      'sky-ruins':{top:0x91d4e8,bottom:0x6684bc,road:0xb58a62,edge:0xffefb0,water:0x6ec8e4,accent:0x45659c,detail:0xd8f5ff},
+    };
+    const c=themes[this.mapId];
     const g=this.add.graphics();
     g.fillGradientStyle(0x173b30,0x173b30,0x0d2b23,0x0d2b23).fillRect(0,0,1080,620);
     g.fillGradientStyle(c.top,c.top,c.bottom,c.bottom).fillRoundedRect(10,74,1048,538,26);
@@ -51,9 +54,19 @@ export class CampaignGameScene extends ModernGameScene {
       const x=Phaser.Math.Between(35,1030),y=Phaser.Math.Between(95,520);
       if(this.distanceToPath(x,y)>75){
         if(i%4===0){g.fillStyle(0xffffff,.75).fillCircle(x,y,3);g.fillStyle(0xffda65,.9).fillCircle(x,y,1.5)}
-        else {g.fillStyle(0x173e2d,.22).fillEllipse(x+4,y+14,38,12);g.fillStyle(c.accent,.95).fillCircle(x,y,13);g.fillStyle(0x78c65c,.9).fillCircle(x-8,y-6,11);}
+        else {g.fillStyle(0x173e2d,.22).fillEllipse(x+4,y+14,38,12);g.fillStyle(c.accent,.95).fillCircle(x,y,13);g.fillStyle(c.detail,.9).fillCircle(x-8,y-6,11);}
       }
     }
+    const decor:Record<MapId,string[]>= {
+      'green-valley':['🌲','🌳','🌿'],
+      'sunstone-loop':['🌵','🪨','☀️'],
+      'moonlit-marsh':['🪷','🌙','🪵'],
+      'crystal-cavern':['💎','🔷','🪨'],
+      'volcano-pass':['🌋','🔥','🪨'],
+      'sky-ruins':['☁️','✨','🗿'],
+    };
+    const spots=[[80,430],[330,110],[520,390],[705,120],[940,360],[980,500],[520,120]];
+    spots.forEach(([x,y],i)=>{if(this.distanceToPath(x,y)>76)this.add.text(x,y,decor[this.mapId][i%3],{fontSize:`${22+(i%3)*4}px`}).setOrigin(.5).setAlpha(.82).setDepth(2)});
     this.add.text(20,90,'⚑ START',{fontSize:'16px',fontStyle:'bold',color:'#fff',backgroundColor:'#287a4b',padding:{x:9,y:6}}).setDepth(3);
     const last=PATH[PATH.length-1];
     this.add.text(Math.min(960,last.x-80),Math.max(88,last.y-50),'🏰 GATE',{fontSize:'16px',fontStyle:'bold',color:'#fff',backgroundColor:'#9b4939',padding:{x:9,y:6}}).setDepth(3);
@@ -82,7 +95,7 @@ export class CampaignGameScene extends ModernGameScene {
 
   selectTower(t:Tower){
     this.cancelPlacement();this.selectedTower=t;this.panel?.destroy();
-    const bg=this.add.rectangle(535,657,1040,116,0x142f27,.98).setStrokeStyle(4,t.level>=4?0x8df06b:t.data.color);
+    const bg=this.add.rectangle(535,657,1040,116,0x142f27,.98).setStrokeStyle(4,t.level>=6?0x8df06b:t.data.color);
     const title=this.add.text(35,625,`${t.data.frame} ${t.data.name}  •  LV ${t.level}`,{fontSize:'20px',fontStyle:'bold',color:'#fff'});
     const stats=this.add.text(35,662,`DMG ${Math.round(t.data.damage*t.damageBonus)}   RANGE ${Math.round(t.range)}   RATE ${(t.data.rate*t.rateBonus).toFixed(2)}/s`,{fontSize:'15px',color:'#d9f1e2'});
     const modes:TargetMode[]=['FIRST','LAST','STRONGEST','WEAKEST','CLOSEST'];
