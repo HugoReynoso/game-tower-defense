@@ -20,14 +20,14 @@ Ogni push su `main` compila e pubblica automaticamente il gioco con GitHub Actio
 
 ## Il gioco
 
-Green Valley Guardians è un tower defense web originale ambientato in una valle fantasy. Costruisci guardiani lungo il percorso, scegli le priorità di bersaglio, migliora o vendi le torri e supera una campagna di 30 ondate.
+Green Valley Guardians è un tower defense web originale ambientato in una valle fantasy. Costruisci guardiani lungo il percorso, scegli le priorità di bersaglio, migliora o vendi le torri e supera una campagna di 40 ondate.
 
 Il vertical slice offre una partita completa di circa 5–10 minuti:
 
 - 6 mappe originali disponibili fin dall'inizio;
 - 10 guardiani con ruoli offensivi, controllo e danno ad area;
 - 9 famiglie di mostri, inclusi nemici rapidi, corazzati e boss;
-- 30 wave data-driven con difficoltà progressiva;
+- 40 wave data-driven con difficoltà progressiva;
 - gold, vite, ricompense e bonus wave;
 - proiettili che viaggiano realmente verso il bersaglio;
 - danno ad area, armatura e rallentamento;
@@ -183,7 +183,7 @@ Personaggi, nomi, mappa, interfaccia e asset sono originali. Il progetto usa esc
 
 **v0.2.0 — Campaign Expansion**
 
-- campagna completa da 30 wave;
+- campagna completa da 40 wave;
 - 10 guardiani, 9 famiglie di mostri e 6 mappe;
 - musica continua con volume e mute;
 - pannello upgrade inferiore ottimizzato per mobile;
