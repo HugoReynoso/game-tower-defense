@@ -43,6 +43,7 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 - vittoria, sconfitta e pausa;
 - interfaccia responsive mobile-first;
 - gameplay con mappa dominante, barra verticale dei guardiani e upgrade in basso su mobile;
+- home moderna con illustrazione fantasy originale, profilo e avanzamento campagna;
 
 ## Torri
 
