@@ -13,4 +13,17 @@ export const MAPS={
 } as const;
 
 const advancedEnemies:EnemyId[]=['ghost','firebeast','swarm','mushroom'];
-for(let wave=11;wave<=40;wave++){const groups:Array<{enemy:EnemyId,count:number,interval:number,delay?:number}>=[{enemy:wave%2?'runner':'slime',count:20+wave,interval:Math.max(150,420-wave*6)},{enemy:advancedEnemies[(wave-11)%advancedEnemies.length],count:7+Math.floor(wave*.72),interval:Math.max(250,650-wave*7),delay:800}];if(wave%5===0)groups.push({enemy:'beetle',count:7+Math.floor(wave/2),interval:540,delay:1400});if(wave===20)groups.push({enemy:'firebeast',count:2,interval:900,delay:4000});if(wave===30)groups.push({enemy:'golem',count:1,interval:1,delay:5000});if(wave===40)groups.push({enemy:'golem',count:2,interval:1800,delay:5400},{enemy:'boss',count:3,interval:1200,delay:6800});WAVES.push(groups)}
+for(let wave=11;wave<=40;wave++){
+  const lateMultiplier=wave>=35?2.15:wave>=30?1.75:wave>=21?1.35:1;
+  const groups:Array<{enemy:EnemyId,count:number,interval:number,delay?:number}>=[
+    {enemy:wave%2?'runner':'slime',count:Math.floor((20+wave)*lateMultiplier),interval:Math.max(105,420-wave*7)},
+    {enemy:advancedEnemies[(wave-11)%advancedEnemies.length],count:Math.floor((7+wave*.72)*lateMultiplier),interval:Math.max(175,650-wave*9),delay:650},
+  ];
+  if(wave%5===0||wave>=34)groups.push({enemy:'beetle',count:Math.floor((7+wave/2)*lateMultiplier),interval:Math.max(270,540-(wave-20)*7),delay:1200});
+  if(wave>=25&&wave%5===0)groups.push({enemy:'boss',count:1+Math.floor((wave-25)/5),interval:1250,delay:3900});
+  if(wave===20)groups.push({enemy:'firebeast',count:3,interval:800,delay:3600});
+  if(wave===30)groups.push({enemy:'golem',count:2,interval:1600,delay:4700});
+  if(wave===35)groups.push({enemy:'golem',count:3,interval:1450,delay:4800});
+  if(wave===40)groups.push({enemy:'golem',count:6,interval:1200,delay:5000},{enemy:'boss',count:8,interval:850,delay:6100});
+  WAVES.push(groups);
+}

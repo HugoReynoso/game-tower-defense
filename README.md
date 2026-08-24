@@ -27,7 +27,7 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 - 6 mappe originali disponibili fin dall'inizio;
 - 10 guardiani con ruoli offensivi, controllo e danno ad area;
 - 9 famiglie di mostri, inclusi nemici rapidi, corazzati e boss;
-- 40 wave data-driven con difficoltà progressiva;
+- 40 wave data-driven con una forte escalation dalla wave 21 e assedi con boss multipli nelle fasi finali;
 - gold, vite, ricompense e bonus wave;
 - proiettili che viaggiano realmente verso il bersaglio;
 - danno ad area, armatura e rallentamento;
