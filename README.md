@@ -59,7 +59,7 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 | Thorn Nest | 95 | Raffica naturale molto rapida | 8 danni, 2.1 attacchi/s |
 | Solar Prism | 280 | Guardiano finale ad alta potenza | 90 danni, 210 range |
 
-Ogni torre può usare `FIRST`, `LAST`, `STRONGEST`, `WEAKEST` o `CLOSEST`. Gli upgrade aumentano progressivamente danno, gittata e cadenza; la vendita restituisce il 70% dell'investimento totale.
+Ogni torre può usare `FIRST`, `LAST`, `STRONGEST`, `WEAKEST` o `CLOSEST`. I 6 livelli di upgrade aumentano progressivamente danno, gittata e cadenza con costi crescenti; la vendita restituisce il 70% dell'investimento totale.
 
 ## Nemici
 

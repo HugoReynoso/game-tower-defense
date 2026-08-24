@@ -12,7 +12,7 @@ type MapId=keyof typeof MAPS;
 export class CampaignGameScene extends ModernGameScene {
   init(data:{difficulty?:Difficulty;map?:MapId}) {
     super.init(data);
-    const balance={EASY:{lives:145,gold:675,hp:.88},NORMAL:{lives:105,gold:550,hp:1.08},HARD:{lives:80,gold:450,hp:1.25}}[this.difficulty];
+    const balance={EASY:{lives:120,gold:575,hp:1.02},NORMAL:{lives:95,gold:500,hp:1.14},HARD:{lives:70,gold:410,hp:1.32}}[this.difficulty];
     Object.assign(this,{lives:balance.lives,gold:balance.gold,enemyHp:balance.hp});
   }
 
@@ -88,7 +88,7 @@ export class CampaignGameScene extends ModernGameScene {
     const modes:TargetMode[]=['FIRST','LAST','STRONGEST','WEAKEST','CLOSEST'];
     const target=this.add.text(430,657,`🎯 ${t.mode}`,{fontSize:'16px',color:'#fff',backgroundColor:'#365d4b',padding:{x:11,y:9}}).setOrigin(.5).setInteractive();
     target.on('pointerdown',(p:Phaser.Input.Pointer)=>{p.event.stopPropagation();t.mode=modes[(modes.indexOf(t.mode)+1)%modes.length];target.setText(`🎯 ${t.mode}`)});
-    const cost=Math.round(t.data.cost*(.65+.25*t.level)),maxed=t.level>=4;
+    const cost=Math.round(t.data.cost*(.82+.34*t.level)),maxed=t.level>=6;
     const upgrade=this.add.text(650,657,maxed?'★ MAX LEVEL ★':`⬆ UPGRADE ${cost}g`,{fontSize:'16px',fontStyle:'bold',color:maxed?'#17341e':'#34250e',backgroundColor:maxed?'#8df06b':'#efb83f',padding:{x:12,y:10}}).setOrigin(.5);
     if(!maxed)upgrade.setInteractive().on('pointerdown',(p:Phaser.Input.Pointer)=>{p.event.stopPropagation();if(this.gold>=cost){this.gold-=t.upgrade();SoundManager.tone('place');this.updateHud();this.selectTower(t)}});
     const sell=this.add.text(850,657,`SELL +${Math.floor(t.spent*.7)}g`,{fontSize:'16px',color:'#fff',backgroundColor:'#a94f47',padding:{x:12,y:10}}).setOrigin(.5).setInteractive();

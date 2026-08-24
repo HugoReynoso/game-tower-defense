@@ -4,7 +4,7 @@ import type {TargetMode,TowerId} from '../types';
 
 type Part={glyph:string,x?:number,y?:number,size?:number,angle?:number};
 
-const LEVEL_FORMS:Record<TowerId,[Part[],Part[],Part[],Part[]]>={
+const LEVEL_FORMS:Record<TowerId,Part[][]>={
   archer:[[{glyph:'🏹'}],[{glyph:'🏹'},{glyph:'➶',x:7,y:-9,size:22,angle:-12}],[{glyph:'🏹'},{glyph:'➶',x:5,y:-11,size:21,angle:-16},{glyph:'➶',x:10,y:-3,size:20,angle:-5}],[{glyph:'🏰',y:5,size:38},{glyph:'🏹',y:-11,size:27}]],
   cannon:[[{glyph:'💣'}],[{glyph:'💣',x:-6,y:5,size:35},{glyph:'💣',x:7,y:-5,size:35}],[{glyph:'🧨',x:-5,y:4,size:35},{glyph:'💣',x:7,y:-5,size:34}],[{glyph:'🏰',y:5,size:38},{glyph:'💣',y:-13,size:25}]],
   frost:[[{glyph:'❄️'}],[{glyph:'❄️',x:-6,y:4,size:34},{glyph:'❄️',x:7,y:-5,size:32}],[{glyph:'🧊',size:42},{glyph:'❄️',y:-2,size:24}],[{glyph:'🏰',y:6,size:38},{glyph:'🧊',y:-13,size:24}]],
@@ -41,14 +41,16 @@ export class Tower{
 
   renderLevel(){
     this.visual.removeAll(true);
-    LEVEL_FORMS[this.id][this.level-1].forEach(part=>{
+    const base=LEVEL_FORMS[this.id][Math.min(this.level,4)-1];
+    const mastery:Part[]=this.level===5?[{glyph:'◆',x:-14,y:13,size:14}]:this.level>=6?[{glyph:'◆',x:-14,y:13,size:14},{glyph:'◆',x:14,y:13,size:14}]:[];
+    [...base,...mastery].forEach(part=>{
       const item=this.scene.add.text(part.x||0,part.y||0,part.glyph,{fontSize:`${part.size||43}px`,shadow:{offsetX:0,offsetY:4,color:'#132b20',blur:4,fill:true}}).setOrigin(.5).setAngle(part.angle||0);
       this.visual.add(item);
     });
   }
 
   upgrade(){
-    const cost=Math.round(this.data.cost*(.65+.25*this.level));
+    const cost=Math.round(this.data.cost*(.82+.34*this.level));
     this.spent+=cost;this.level++;this.damageBonus*=1.35;this.rateBonus*=1.15;this.rangeBonus*=1.08;
     this.renderLevel();
     this.scene.tweens.add({targets:this.visual,scale:1.24,duration:130,yoyo:true});
