@@ -9,7 +9,7 @@ export const MAPS={
   'moonlit-marsh':{name:'Moonlit Marsh',theme:'marsh',path:[{x:-30,y:280},{x:190,y:280},{x:190,y:125},{x:440,y:125},{x:440,y:470},{x:680,y:470},{x:680,y:205},{x:900,y:205},{x:900,y:500},{x:1055,y:500}]},
   'crystal-cavern':{name:'Crystal Cavern',theme:'marsh',path:[{x:-30,y:145},{x:250,y:145},{x:250,y:500},{x:500,y:500},{x:500,y:210},{x:760,y:210},{x:760,y:500},{x:1055,y:500}]},
   'volcano-pass':{name:'Volcano Pass',theme:'desert',path:[{x:-30,y:500},{x:170,y:500},{x:170,y:180},{x:390,y:180},{x:390,y:440},{x:610,y:440},{x:610,y:135},{x:830,y:135},{x:830,y:410},{x:1055,y:410}]},
-  'sky-ruins':{name:'Sky Ruins',theme:'forest',path:[{x:-30,y:330},{x:180,y:330},{x:180,y:140},{x:350,y:140},{x:350,y:500},{x:560,y:500},{x:560,y:235},{x:740,y:235},{x:740,y:470},{x:920,y:470},{x:920,y:160},{x:1055,y:160}]},
+  'sky-ruins':{name:'Frostpeak Ruins',theme:'forest',path:[{x:-30,y:330},{x:180,y:330},{x:180,y:140},{x:350,y:140},{x:350,y:500},{x:560,y:500},{x:560,y:235},{x:740,y:235},{x:740,y:470},{x:920,y:470},{x:920,y:160},{x:1055,y:160}]},
 } as const;
 
 const advancedEnemies:EnemyId[]=['ghost','firebeast','swarm','mushroom'];

@@ -22,9 +22,11 @@ Ogni push su `main` compila e pubblica automaticamente il gioco con GitHub Actio
 
 Green Valley Guardians è un tower defense web originale ambientato in una valle fantasy. Costruisci guardiani lungo il percorso, scegli le priorità di bersaglio, migliora o vendi le torri e supera una campagna di 40 ondate.
 
+La curva di difficoltà attuale applica il 20% di resistenza aggiuntiva ai nemici in Easy, Normal e Hard, oltre alla forte escalation delle ondate finali.
+
 Il vertical slice offre una partita completa di circa 5–10 minuti:
 
-- 6 mappe originali disponibili fin dall'inizio, ciascuna con anteprima del percorso e ambientazione visiva dedicata;
+- 6 mappe originali disponibili fin dall'inizio, ciascuna con anteprima del percorso e ambientazione visiva dedicata, incluso il regno innevato Frostpeak Ruins;
 - 10 guardiani con ruoli offensivi, controllo e danno ad area;
 - 9 famiglie di mostri, inclusi nemici rapidi, corazzati e boss;
 - 40 wave data-driven con una forte escalation dalla wave 21 e assedi con boss multipli nelle fasi finali;

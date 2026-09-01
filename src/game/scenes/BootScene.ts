@@ -6,6 +6,7 @@ export class BootScene extends Phaser.Scene{
     this.load.image('enemySheet','assets/enemies.png');
     this.load.image('projectileSheet','assets/projectiles.png');
     this.load.image('homeBackground','assets/home-background.png');
+    this.load.image('frostpeakBackground','assets/frostpeak-background.png');
   }
   create(){this.makeFallbacks();this.scene.start('menu')}
   private makeFallbacks(){

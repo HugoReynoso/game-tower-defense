@@ -13,7 +13,7 @@ const LOOK:Record<MapId,{top:number,bottom:number,road:number,edge:number,icon:s
   'moonlit-marsh':{top:0x5c9c8c,bottom:0x243f55,road:0x685b59,edge:0xb7d2ad,icon:'🌙',label:'HAUNTED WETLAND',difficulty:'TACTICAL'},
   'crystal-cavern':{top:0x657bd1,bottom:0x252b63,road:0x56527a,edge:0x8eeeff,icon:'💎',label:'ARCANE DEPTHS',difficulty:'EXPERT'},
   'volcano-pass':{top:0xb84b32,bottom:0x3a1721,road:0x49363b,edge:0xff8248,icon:'🌋',label:'MOLTEN FORTRESS',difficulty:'EXPERT'},
-  'sky-ruins':{top:0x78cfe7,bottom:0x526eb2,road:0xb78b60,edge:0xffefb0,icon:'☁️',label:'FLOATING REALM',difficulty:'MASTER'},
+  'sky-ruins':{top:0xeaf8ff,bottom:0x719bcc,road:0x8aa1ad,edge:0xffffff,icon:'❄️',label:'FROZEN KINGDOM',difficulty:'MASTER'},
 };
 
 export class BalancedMapSelectScene extends Phaser.Scene{
@@ -44,8 +44,9 @@ export class BalancedMapSelectScene extends Phaser.Scene{
     const shadow=this.add.rectangle(x,y+7,378,166,0x020b08,.62).setOrigin(.5);
     const glow=this.add.rectangle(x,y,384,170,0xffd75d,.12).setOrigin(.5);
     const border=this.add.rectangle(x,y,374,160,0x173b30).setStrokeStyle(2,0x527a68).setOrigin(.5).setInteractive({useHandCursor:true});
+    if(id==='sky-ruins')this.add.image(x,y-21,'frostpeakBackground').setDisplaySize(360,105);
     const art=this.add.graphics();
-    art.fillGradientStyle(look.top,look.top,look.bottom,look.bottom).fillRoundedRect(x-180,y-73,360,105,15);
+    if(id!=='sky-ruins')art.fillGradientStyle(look.top,look.top,look.bottom,look.bottom).fillRoundedRect(x-180,y-73,360,105,15);
     for(let n=0;n<10;n++)art.fillStyle(n%2?0xffffff:look.edge,n%2?.06:.12).fillCircle(x-160+n*36,y-55+(n%3)*22,8+n%4*3);
     this.drawPreviewPath(art,id,x,y-30,look);
     this.add.text(x-158,y-55,look.icon,{fontSize:'26px'}).setOrigin(.5);

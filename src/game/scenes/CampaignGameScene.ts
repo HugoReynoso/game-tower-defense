@@ -12,7 +12,7 @@ type MapId=keyof typeof MAPS;
 export class CampaignGameScene extends ModernGameScene {
   init(data:{difficulty?:Difficulty;map?:MapId}) {
     super.init(data);
-    const balance={EASY:{lives:120,gold:575,hp:1.02},NORMAL:{lives:95,gold:500,hp:1.14},HARD:{lives:70,gold:410,hp:1.32}}[this.difficulty];
+    const balance={EASY:{lives:120,gold:575,hp:1.224},NORMAL:{lives:95,gold:500,hp:1.368},HARD:{lives:70,gold:410,hp:1.584}}[this.difficulty];
     Object.assign(this,{lives:balance.lives,gold:balance.gold,enemyHp:balance.hp});
   }
 
@@ -33,12 +33,14 @@ export class CampaignGameScene extends ModernGameScene {
       'moonlit-marsh':{top:0x6da789,bottom:0x395f61,road:0x665b59,edge:0xaec5a3,water:0x315f7b,accent:0x294c4e,detail:0x5e8c74},
       'crystal-cavern':{top:0x7387cc,bottom:0x303766,road:0x585374,edge:0x8ee9f5,water:0x315f89,accent:0x5445a4,detail:0x59b9d0},
       'volcano-pass':{top:0xb95738,bottom:0x55252a,road:0x49373b,edge:0xff8250,water:0xd94a2c,accent:0x6f2026,detail:0xd65a35},
-      'sky-ruins':{top:0x91d4e8,bottom:0x6684bc,road:0xb58a62,edge:0xffefb0,water:0x6ec8e4,accent:0x45659c,detail:0xd8f5ff},
+      'sky-ruins':{top:0x91d4e8,bottom:0x6684bc,road:0x8aa1ad,edge:0xffffff,water:0x6ec8e4,accent:0x45659c,detail:0xd8f5ff},
     };
     const c=themes[this.mapId];
+    const base=this.add.graphics();
+    base.fillGradientStyle(0x173b30,0x173b30,0x0d2b23,0x0d2b23).fillRect(0,0,1080,620);
+    if(this.mapId==='sky-ruins')this.add.image(534,342,'frostpeakBackground').setDisplaySize(1048,538).setDepth(0);
     const g=this.add.graphics();
-    g.fillGradientStyle(0x173b30,0x173b30,0x0d2b23,0x0d2b23).fillRect(0,0,1080,620);
-    g.fillGradientStyle(c.top,c.top,c.bottom,c.bottom).fillRoundedRect(10,74,1048,538,26);
+    if(this.mapId==='sky-ruins')g.fillStyle(0xbcecff,.16).fillRoundedRect(10,74,1048,538,26);else g.fillGradientStyle(c.top,c.top,c.bottom,c.bottom).fillRoundedRect(10,74,1048,538,26);
     for(let i=0;i<28;i++){
       const x=Phaser.Math.Between(25,1040),y=Phaser.Math.Between(90,525),r=Phaser.Math.Between(18,58);
       g.fillStyle(i%3?0xffffff:c.accent,i%3?.045:.07).fillCircle(x,y,r);
@@ -63,7 +65,7 @@ export class CampaignGameScene extends ModernGameScene {
       'moonlit-marsh':['🪷','🌙','🪵'],
       'crystal-cavern':['💎','🔷','🪨'],
       'volcano-pass':['🌋','🔥','🪨'],
-      'sky-ruins':['☁️','✨','🗿'],
+      'sky-ruins':['❄️','💎','🌲'],
     };
     const spots=[[80,430],[330,110],[520,390],[705,120],[940,360],[980,500],[520,120]];
     spots.forEach(([x,y],i)=>{if(this.distanceToPath(x,y)>76)this.add.text(x,y,decor[this.mapId][i%3],{fontSize:`${22+(i%3)*4}px`}).setOrigin(.5).setAlpha(.82).setDepth(2)});
