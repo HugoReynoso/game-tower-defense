@@ -35,8 +35,7 @@ export class MenuScene extends Phaser.Scene{
   }
 
   welcome(){
-    this.add.text(1000,235,'WELCOME, GUARDIAN',{fontSize:'24px',fontStyle:'bold',color:'#ffffff'}).setOrigin(.5);
-    this.add.text(1000,273,'Choose a name for your campaign',{fontSize:'15px',color:'#b8dccc'}).setOrigin(.5);
+    this.add.text(1000,242,'Choose a name for your campaign',{fontSize:'15px',color:'#b8dccc'}).setOrigin(.5);
     const el=document.createElement('input');
     el.maxLength=15;el.placeholder='3–15 characters';
     Object.assign(el.style,{font:'600 20px Fredoka',padding:'13px',width:'286px',borderRadius:'13px',border:'2px solid #8de6bb',background:'rgba(7,27,22,.92)',color:'#fff',outline:'none',textAlign:'center',boxShadow:'0 8px 24px rgba(0,0,0,.3)'});
