@@ -12,7 +12,7 @@ type MapId=keyof typeof MAPS;
 export class CampaignGameScene extends ModernGameScene {
   init(data:{difficulty?:Difficulty;map?:MapId}) {
     super.init(data);
-    const balance={EASY:{lives:120,gold:575,hp:1.224},NORMAL:{lives:95,gold:500,hp:1.368},HARD:{lives:70,gold:410,hp:1.584}}[this.difficulty];
+    const balance={EASY:{lives:120,gold:575,hp:1.408},NORMAL:{lives:95,gold:500,hp:1.573},HARD:{lives:70,gold:410,hp:1.822}}[this.difficulty];
     Object.assign(this,{lives:balance.lives,gold:balance.gold,enemyHp:balance.hp});
   }
 
@@ -41,16 +41,25 @@ export class CampaignGameScene extends ModernGameScene {
     this.add.image(534,342,c.asset).setDisplaySize(1048,538).setDepth(0);
     const g=this.add.graphics();
     g.fillStyle(c.tint,.09).fillRoundedRect(10,74,1048,538,26);
-    g.lineStyle(78,0x101c1a,.28).beginPath().moveTo(PATH[0].x+5,PATH[0].y+7);PATH.slice(1).forEach(p=>g.lineTo(p.x+5,p.y+7));g.strokePath();
-    PATH.forEach(p=>g.fillStyle(0x101c1a,.28).fillCircle(p.x+5,p.y+7,39));
-    g.lineStyle(72,c.blend,.55).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
-    PATH.forEach(p=>g.fillStyle(c.blend,.55).fillCircle(p.x,p.y,36));
-    g.lineStyle(62,c.edge,.98).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
-    PATH.forEach(p=>g.fillStyle(c.edge,.98).fillCircle(p.x,p.y,31));
-    g.lineStyle(50,c.road).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
-    PATH.forEach(p=>g.fillStyle(c.road).fillCircle(p.x,p.y,25));
-    g.lineStyle(2,c.mark,.6).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
-    PATH.slice(0,-1).forEach((a,i)=>{const b=PATH[i+1],length=Math.hypot(b.x-a.x,b.y-a.y);for(let d=28;d<length;d+=44){const x=a.x+(b.x-a.x)*d/length,y=a.y+(b.y-a.y)*d/length;if(this.mapId==='crystal-cavern'||this.mapId==='sky-ruins'){g.fillStyle(c.mark,.65).fillCircle(x,y,2.4)}else if(this.mapId==='volcano-pass'){g.lineStyle(2,c.mark,.7).lineBetween(x-4,y-3,x+4,y+3)}else{g.fillStyle(c.mark,.28).fillEllipse(x,y,8,3)}}});
+    g.lineStyle(82,c.blend,.18).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
+    PATH.forEach(p=>g.fillStyle(c.blend,.18).fillCircle(p.x,p.y,41));
+    g.lineStyle(70,c.edge,.44).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
+    PATH.forEach(p=>g.fillStyle(c.edge,.44).fillCircle(p.x,p.y,35));
+    g.lineStyle(54,c.road,.82).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
+    PATH.forEach(p=>g.fillStyle(c.road,.82).fillCircle(p.x,p.y,27));
+    PATH.slice(0,-1).forEach((a,i)=>{
+      const b=PATH[i+1],dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy),nx=-dy/length,ny=dx/length;
+      for(let d=18;d<length;d+=30){
+        const offset=((i*19+d)%29)-14,x=a.x+dx*d/length+nx*offset,y=a.y+dy*d/length+ny*offset;
+        const edgeOffset=34+((i*11+d)%7)-3,ex=a.x+dx*d/length,ey=a.y+dy*d/length;
+        g.fillStyle(c.blend,.16).fillCircle(ex+nx*edgeOffset,ey+ny*edgeOffset,4+((i+d)%4)).fillCircle(ex-nx*edgeOffset,ey-ny*edgeOffset,3+((i+d)%5));
+        if(this.mapId==='crystal-cavern'){g.fillStyle(c.mark,.5).fillCircle(x,y,2.4);g.fillStyle(0xffffff,.22).fillCircle(x+2,y-2,1)}
+        else if(this.mapId==='sky-ruins'){g.fillStyle(c.mark,.32).fillEllipse(x,y,9,4)}
+        else if(this.mapId==='volcano-pass'){g.lineStyle(2,c.mark,.42).lineBetween(x-4,y-3,x+3,y+2)}
+        else if(this.mapId==='moonlit-marsh'){g.fillStyle(c.mark,.18).fillRoundedRect(x-6,y-2,12,4,2)}
+        else {g.fillStyle(c.mark,.2).fillEllipse(x,y,7+((i+d)%5),3)}
+      }
+    });
     const labelSize=this.mobileUI()?'20px':'16px';
     this.add.text(20,90,'⚑ START',{fontSize:labelSize,fontStyle:'bold',color:'#fff',backgroundColor:'#287a4b',padding:{x:9,y:6}}).setDepth(3);
     const last=PATH[PATH.length-1];
