@@ -46,8 +46,7 @@ export class MenuScene extends Phaser.Scene{
   }
 
   menu(){
-    this.add.text(1000,222,`${tr('welcome')}, ${this.profile!.nickname}`,{fontSize:'20px',fontStyle:'bold',color:'#ffffff'}).setOrigin(.5);
-    this.add.text(1000,250,`LEVEL ${this.profile!.level}   •   XP ${this.profile!.xp}`,{fontSize:'13px',color:'#8de6bb'}).setOrigin(.5);
+    this.add.text(1000,235,`LEVEL ${this.profile!.level}   •   XP ${this.profile!.xp}`,{fontSize:'13px',color:'#8de6bb'}).setOrigin(.5);
     this.button(306,`▶  ${tr('play')}`,()=>this.scene.start('map-select'));
     this.button(378,`🏰  ${tr('towers')}`,()=>this.toast('10 guardians unlocked'),0x8fdd68);
     this.button(450,`⭐  ${tr('profile')}`,()=>this.toast(`Victories ${this.profile!.victories}  •  Kills ${this.profile!.totalKills}`),0x69cbe7);
