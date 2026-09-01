@@ -26,7 +26,7 @@ La curva di difficoltà attuale applica il 20% di resistenza aggiuntiva ai nemic
 
 Il vertical slice offre una partita completa di circa 5–10 minuti:
 
-- 6 mappe originali disponibili fin dall'inizio, ciascuna con anteprima del percorso e ambientazione visiva dedicata, incluso il regno innevato Frostpeak Ruins;
+- 6 mappe originali disponibili fin dall'inizio, ciascuna con fondale illustrato, anteprima reale del percorso e strada coerente col bioma: terra, sabbia, pietra palustre, cristallo, ossidiana o neve;
 - 10 guardiani con ruoli offensivi, controllo e danno ad area;
 - 9 famiglie di mostri, inclusi nemici rapidi, corazzati e boss;
 - 40 wave data-driven con una forte escalation dalla wave 21 e assedi con boss multipli nelle fasi finali;
@@ -85,7 +85,7 @@ Ogni torre può usare `FIRST`, `LAST`, `STRONGEST`, `WEAKEST` o `CLOSEST`. I 6 l
 4. Tocca una torre per cambiare targeting, migliorarla o venderla.
 5. Usa ×1, ×2 o ×3 per regolare la velocità.
 
-La preview verde indica una posizione valida; quella rossa segnala strada, sovrapposizioni o aree fuori mappa. Prima della partita si sceglie una delle 6 mappe e la difficoltà: Easy offre più risorse e nemici meno resistenti, Hard riduce vite e gold e aumenta gli HP nemici.
+La preview verde indica una posizione valida; quella rossa segnala strada, sovrapposizioni o aree fuori mappa. Le carreggiate compatte e la griglia di collisione consentono di affiancare due guardiani quando il terreno illustrato offre spazio sufficiente. Prima della partita si sceglie una delle 6 mappe e la difficoltà: Easy offre più risorse e nemici meno resistenti, Hard riduce vite e gold e aumenta gli HP nemici.
 
 ## Specifiche tecniche
 

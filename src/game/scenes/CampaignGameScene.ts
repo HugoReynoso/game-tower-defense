@@ -27,51 +27,32 @@ export class CampaignGameScene extends ModernGameScene {
   }
 
   drawMap() {
-    const themes:Record<MapId,{top:number,bottom:number,road:number,edge:number,water:number,accent:number,detail:number}>={
-      'green-valley':{top:0xa9df70,bottom:0x63b954,road:0xb87949,edge:0xf0d087,water:0x43afc5,accent:0x2d7b47,detail:0x78c65c},
-      'sunstone-loop':{top:0xf5d77c,bottom:0xc89149,road:0x93624c,edge:0xffdf86,water:0x3f9dbb,accent:0xa46535,detail:0xd8913f},
-      'moonlit-marsh':{top:0x6da789,bottom:0x395f61,road:0x665b59,edge:0xaec5a3,water:0x315f7b,accent:0x294c4e,detail:0x5e8c74},
-      'crystal-cavern':{top:0x7387cc,bottom:0x303766,road:0x585374,edge:0x8ee9f5,water:0x315f89,accent:0x5445a4,detail:0x59b9d0},
-      'volcano-pass':{top:0xb95738,bottom:0x55252a,road:0x49373b,edge:0xff8250,water:0xd94a2c,accent:0x6f2026,detail:0xd65a35},
-      'sky-ruins':{top:0x91d4e8,bottom:0x6684bc,road:0x8aa1ad,edge:0xffffff,water:0x6ec8e4,accent:0x45659c,detail:0xd8f5ff},
+    const themes:Record<MapId,{asset:string,road:number,edge:number,mark:number,tint:number}>={
+      'green-valley':{asset:'greenValleyBackground',road:0xb97d4c,edge:0xe7c27b,mark:0x795236,tint:0x79b95d},
+      'sunstone-loop':{asset:'sunstoneBackground',road:0xd6a759,edge:0xffdc86,mark:0x9d6d35,tint:0xf0bb5e},
+      'moonlit-marsh':{asset:'moonlitBackground',road:0x596767,edge:0x8eb295,mark:0x96b6ae,tint:0x37666a},
+      'crystal-cavern':{asset:'crystalBackground',road:0x59627d,edge:0x86e7f0,mark:0x9df6ff,tint:0x4c5ea4},
+      'volcano-pass':{asset:'volcanoBackground',road:0x342f35,edge:0xe66739,mark:0xffa04a,tint:0x813127},
+      'sky-ruins':{asset:'frostpeakBackground',road:0xb9d4df,edge:0xf5fbff,mark:0xffffff,tint:0xa6d9ec},
     };
     const c=themes[this.mapId];
     const base=this.add.graphics();
     base.fillGradientStyle(0x173b30,0x173b30,0x0d2b23,0x0d2b23).fillRect(0,0,1080,620);
-    if(this.mapId==='sky-ruins')this.add.image(534,342,'frostpeakBackground').setDisplaySize(1048,538).setDepth(0);
+    this.add.image(534,342,c.asset).setDisplaySize(1048,538).setDepth(0);
     const g=this.add.graphics();
-    if(this.mapId==='sky-ruins')g.fillStyle(0xbcecff,.16).fillRoundedRect(10,74,1048,538,26);else g.fillGradientStyle(c.top,c.top,c.bottom,c.bottom).fillRoundedRect(10,74,1048,538,26);
-    for(let i=0;i<28;i++){
-      const x=Phaser.Math.Between(25,1040),y=Phaser.Math.Between(90,525),r=Phaser.Math.Between(18,58);
-      g.fillStyle(i%3?0xffffff:c.accent,i%3?.045:.07).fillCircle(x,y,r);
-    }
-    g.fillStyle(c.water,.94).fillRoundedRect(10,540,1048,72,22);
-    g.fillGradientStyle(0xffffff,0xffffff,c.water,c.water,.16).fillRoundedRect(20,548,1028,14,7);
-    for(let x=35;x<1040;x+=54)g.fillStyle(0xffffff,.13).fillEllipse(x,580+(x%3)*4,28,3);
-    g.lineStyle(92,0x132b23,.35).beginPath().moveTo(PATH[0].x+7,PATH[0].y+9);PATH.slice(1).forEach(p=>g.lineTo(p.x+7,p.y+9));g.strokePath();
-    g.lineStyle(82,c.edge).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
-    g.lineStyle(66,c.road).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
-    g.lineStyle(3,0xffefb0,.55).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
-    for(let i=0;i<26;i++){
-      const x=Phaser.Math.Between(35,1030),y=Phaser.Math.Between(95,520);
-      if(this.distanceToPath(x,y)>75){
-        if(i%4===0){g.fillStyle(0xffffff,.75).fillCircle(x,y,3);g.fillStyle(0xffda65,.9).fillCircle(x,y,1.5)}
-        else {g.fillStyle(0x173e2d,.22).fillEllipse(x+4,y+14,38,12);g.fillStyle(c.accent,.95).fillCircle(x,y,13);g.fillStyle(c.detail,.9).fillCircle(x-8,y-6,11);}
-      }
-    }
-    const decor:Record<MapId,string[]>= {
-      'green-valley':['🌲','🌳','🌿'],
-      'sunstone-loop':['🌵','🪨','☀️'],
-      'moonlit-marsh':['🪷','🌙','🪵'],
-      'crystal-cavern':['💎','🔷','🪨'],
-      'volcano-pass':['🌋','🔥','🪨'],
-      'sky-ruins':['❄️','💎','🌲'],
-    };
-    const spots=[[80,430],[330,110],[520,390],[705,120],[940,360],[980,500],[520,120]];
-    spots.forEach(([x,y],i)=>{if(this.distanceToPath(x,y)>76)this.add.text(x,y,decor[this.mapId][i%3],{fontSize:`${22+(i%3)*4}px`}).setOrigin(.5).setAlpha(.82).setDepth(2)});
+    g.fillStyle(c.tint,.09).fillRoundedRect(10,74,1048,538,26);
+    g.lineStyle(74,0x101c1a,.38).beginPath().moveTo(PATH[0].x+6,PATH[0].y+8);PATH.slice(1).forEach(p=>g.lineTo(p.x+6,p.y+8));g.strokePath();
+    g.lineStyle(64,c.edge).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
+    g.lineStyle(50,c.road).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
+    g.lineStyle(2,c.mark,.6).beginPath().moveTo(PATH[0].x,PATH[0].y);PATH.slice(1).forEach(p=>g.lineTo(p.x,p.y));g.strokePath();
+    PATH.slice(0,-1).forEach((a,i)=>{const b=PATH[i+1],length=Math.hypot(b.x-a.x,b.y-a.y);for(let d=28;d<length;d+=44){const x=a.x+(b.x-a.x)*d/length,y=a.y+(b.y-a.y)*d/length;if(this.mapId==='crystal-cavern'||this.mapId==='sky-ruins'){g.fillStyle(c.mark,.65).fillCircle(x,y,2.4)}else if(this.mapId==='volcano-pass'){g.lineStyle(2,c.mark,.7).lineBetween(x-4,y-3,x+4,y+3)}else{g.fillStyle(c.mark,.28).fillEllipse(x,y,8,3)}}});
     this.add.text(20,90,'⚑ START',{fontSize:'16px',fontStyle:'bold',color:'#fff',backgroundColor:'#287a4b',padding:{x:9,y:6}}).setDepth(3);
     const last=PATH[PATH.length-1];
     this.add.text(Math.min(960,last.x-80),Math.max(88,last.y-50),'🏰 GATE',{fontSize:'16px',fontStyle:'bold',color:'#fff',backgroundColor:'#9b4939',padding:{x:9,y:6}}).setDepth(3);
+  }
+
+  validPlacement(x:number,y:number){
+    return x>28&&x<1048&&y>84&&y<602&&this.distanceToPath(x,y)>43&&!this.towers.some(t=>Phaser.Math.Distance.Squared(x,y,t.x,t.y)<2500);
   }
 
   createUI() {

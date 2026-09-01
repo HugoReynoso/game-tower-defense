@@ -6,6 +6,11 @@ export class BootScene extends Phaser.Scene{
     this.load.image('enemySheet','assets/enemies.png');
     this.load.image('projectileSheet','assets/projectiles.png');
     this.load.image('homeBackground','assets/home-background.png');
+    this.load.image('greenValleyBackground','assets/green-valley-background.png');
+    this.load.image('sunstoneBackground','assets/sunstone-background.png');
+    this.load.image('moonlitBackground','assets/moonlit-background.png');
+    this.load.image('crystalBackground','assets/crystal-background.png');
+    this.load.image('volcanoBackground','assets/volcano-background.png');
     this.load.image('frostpeakBackground','assets/frostpeak-background.png');
   }
   create(){this.makeFallbacks();this.scene.start('menu')}

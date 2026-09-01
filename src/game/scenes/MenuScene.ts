@@ -16,18 +16,21 @@ export class MenuScene extends Phaser.Scene{
     shade.fillStyle(0x071b16,.76).fillRoundedRect(760,34,480,652,34);
     shade.lineStyle(2,0x8de6bb,.38).strokeRoundedRect(760,34,480,652,34);
     shade.fillStyle(0xffffff,.055).fillRoundedRect(775,49,450,72,24);
+    shade.fillStyle(0x8de6bb,.16).fillRoundedRect(790,178,420,52,18);
+    shade.lineStyle(1,0x8de6bb,.45).strokeRoundedRect(790,178,420,52,18);
     this.add.text(1000,82,'GREEN VALLEY',{fontSize:'43px',fontStyle:'bold',color:'#fff3b2',stroke:'#18382b',strokeThickness:8,shadow:{offsetX:0,offsetY:5,color:'#061713',blur:6,fill:true}}).setOrigin(.5);
     this.add.text(1000,126,'G U A R D I A N S',{fontSize:'17px',fontStyle:'bold',color:'#8de6bb'}).setOrigin(.5);
     this.add.text(1000,157,'DEFEND  •  UPGRADE  •  SURVIVE',{fontSize:'11px',color:'#c5e9d8'}).setOrigin(.5);
+    this.add.text(1000,204,'6 REALMS   •   40 WAVES   •   10 GUARDIANS',{fontSize:'12px',fontStyle:'bold',color:'#dffff0'}).setOrigin(.5);
     if(!this.profile)this.welcome();else this.menu();
   }
 
   button(y:number,label:string,fn:()=>void,color=0xffcf58){
-    const shadow=this.add.rectangle(1000,y+6,350,60,0x020c09,.55).setOrigin(.5);
-    const button=this.add.rectangle(1000,y,350,60,color,.96).setStrokeStyle(2,0xfff0a8,.72).setInteractive({useHandCursor:true});
+    const shadow=this.add.rectangle(1000,y+7,350,60,0x020c09,.62).setOrigin(.5);
+    const button=this.add.rectangle(1000,y,350,60,color,.96).setStrokeStyle(3,0xffffff,.58).setInteractive({useHandCursor:true});
     const text=this.add.text(1000,y,label,{fontSize:'21px',fontStyle:'bold',color:'#203326'}).setOrigin(.5);
-    button.on('pointerover',()=>{button.setScale(1.025);shadow.setScale(1.025);text.setScale(1.025)})
-      .on('pointerout',()=>{button.setScale(1);shadow.setScale(1);text.setScale(1)})
+    button.on('pointerover',()=>{button.setScale(1.035);button.setStrokeStyle(4,0xffffff,.9);shadow.setScale(1.035);text.setScale(1.035)})
+      .on('pointerout',()=>{button.setScale(1);button.setStrokeStyle(3,0xffffff,.58);shadow.setScale(1);text.setScale(1)})
       .on('pointerdown',()=>{SoundManager.tone('click');fn()});
   }
 
