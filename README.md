@@ -45,6 +45,8 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 - vittoria, sconfitta e pausa;
 - interfaccia responsive mobile-first;
 - gameplay con mappa dominante, barra verticale dei guardiani e upgrade in basso su mobile;
+- HUD mobile dedicato con icone e prezzi ingranditi, testi più leggibili e scheda statistiche mostrata già alla selezione del guardiano;
+- percorsi arrotondati e fusi cromaticamente con ciascun bioma, con texture dedicate a foresta, deserto, palude, cristallo, vulcano e neve;
 - home moderna con illustrazione fantasy originale, profilo e avanzamento campagna;
 
 ## Torri
