@@ -21,7 +21,7 @@ export class MenuScene extends Phaser.Scene{
     this.add.text(1000,82,'GREEN VALLEY',{fontSize:'43px',fontStyle:'bold',color:'#fff3b2',stroke:'#18382b',strokeThickness:8,shadow:{offsetX:0,offsetY:5,color:'#061713',blur:6,fill:true}}).setOrigin(.5);
     this.add.text(1000,126,'G U A R D I A N S',{fontSize:'17px',fontStyle:'bold',color:'#8de6bb'}).setOrigin(.5);
     this.add.text(1000,157,'DEFEND  •  UPGRADE  •  SURVIVE',{fontSize:'11px',color:'#c5e9d8'}).setOrigin(.5);
-    this.add.text(1000,204,'6 REALMS   •   40 WAVES   •   10 GUARDIANS',{fontSize:'12px',fontStyle:'bold',color:'#dffff0'}).setOrigin(.5);
+    this.add.text(1000,178,'6 REALMS   •   40 WAVES   •   10 GUARDIANS',{fontSize:'12px',fontStyle:'bold',color:'#dffff0'}).setOrigin(.5);
     if(!this.profile)this.welcome();else this.menu();
   }
 
@@ -46,8 +46,8 @@ export class MenuScene extends Phaser.Scene{
   }
 
   menu(){
-    this.add.text(1000,213,`${tr('welcome')}, ${this.profile!.nickname}`,{fontSize:'20px',fontStyle:'bold',color:'#ffffff'}).setOrigin(.5);
-    this.add.text(1000,244,`LEVEL ${this.profile!.level}   •   XP ${this.profile!.xp}`,{fontSize:'13px',color:'#8de6bb'}).setOrigin(.5);
+    this.add.text(1000,222,`${tr('welcome')}, ${this.profile!.nickname}`,{fontSize:'20px',fontStyle:'bold',color:'#ffffff'}).setOrigin(.5);
+    this.add.text(1000,250,`LEVEL ${this.profile!.level}   •   XP ${this.profile!.xp}`,{fontSize:'13px',color:'#8de6bb'}).setOrigin(.5);
     this.button(306,`▶  ${tr('play')}`,()=>this.scene.start('map-select'));
     this.button(378,`🏰  ${tr('towers')}`,()=>this.toast('10 guardians unlocked'),0x8fdd68);
     this.button(450,`⭐  ${tr('profile')}`,()=>this.toast(`Victories ${this.profile!.victories}  •  Kills ${this.profile!.totalKills}`),0x69cbe7);
