@@ -10,6 +10,7 @@ type Difficulty='EASY'|'NORMAL'|'HARD';
 type MapId=keyof typeof MAPS;
 
 export class CampaignGameScene extends ModernGameScene {
+  musicButton?:Phaser.GameObjects.Text;
   init(data:{difficulty?:Difficulty;map?:MapId}) {
     super.init(data);
     const balance={EASY:{lives:120,gold:575,hp:1.408},NORMAL:{lives:95,gold:500,hp:1.573},HARD:{lives:70,gold:410,hp:1.822}}[this.difficulty];
@@ -19,6 +20,7 @@ export class CampaignGameScene extends ModernGameScene {
   create() {
     super.create();
     SoundManager.startGameMusic();
+    this.input.once('pointerdown',()=>SoundManager.startGameMusic());
     this.events.once('shutdown',()=>SoundManager.stopGameMusic());
     const e=this.textures.get('enemySheet');
     if(!e.has('ghost')) {
@@ -84,6 +86,8 @@ export class CampaignGameScene extends ModernGameScene {
     hud.lineStyle(3,0xb6e676,.8).strokeRoundedRect(14,12,mobile?700:635,54,18);
     this.hud=this.add.text(35,39,'',{fontSize:mobile?'24px':'20px',fontStyle:'bold',color:'#fff4a5'}).setOrigin(0,.5).setDepth(21);
     this.add.text(mobile?850:800,38,`${MAPS[this.mapId].name}  •  ${this.difficulty}`,{fontSize:mobile?'18px':'15px',fontStyle:'bold',color:'#e8f9d7',backgroundColor:'#315f49',padding:{x:16,y:10}}).setOrigin(.5).setDepth(21);
+    this.musicButton=this.add.text(963,38,SoundManager.gameMusicMuted()?'🔇':'🔊',{fontSize:mobile?'25px':'22px',color:'#253116',backgroundColor:SoundManager.gameMusicMuted()?'#e77365':'#bfe769',padding:{x:10,y:8}}).setOrigin(.5).setDepth(23).setInteractive({useHandCursor:true});
+    this.musicButton.on('pointerdown',(p:Phaser.Input.Pointer)=>{p.event.stopPropagation();const muted=SoundManager.toggleGameMute();this.musicButton?.setText(muted?'🔇':'🔊').setStyle({backgroundColor:muted?'#e77365':'#bfe769'});SoundManager.tone('click')});
     this.add.text(1025,38,'Ⅱ',{fontSize:'26px',color:'#382914',backgroundColor:'#ffd154',padding:{x:16,y:7}}).setOrigin(.5).setDepth(21).setInteractive().on('pointerdown',()=>this.togglePause());
     this.add.text(1171,42,mobile?'GUARDIANS':'10 GUARDIANS',{fontSize:mobile?'18px':'15px',fontStyle:'bold',color:'#e9ffc7'}).setOrigin(.5).setDepth(22);
     const ids:TowerId[]=['archer','cannon','frost','fire','lightning','poison','magic','bomb','nature','sun'];

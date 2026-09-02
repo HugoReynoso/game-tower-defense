@@ -39,7 +39,7 @@ Il vertical slice offre una partita completa di circa 5–10 minuti:
 - selezione mappa predisposta per nuovi reami;
 - menu pausa con Resume, Restart e ritorno alla Home;
 - impostazioni persistenti per musica, SFX, mute, numeri danno e screen shake;
-- colonna sonora MP3 durante le partite, riprodotta in loop, regolabile e silenziabile;
+- colonna sonora MP3 durante le partite, riprodotta in loop, regolabile dalle impostazioni e attivabile/disattivabile dall'icona audio nell'HUD;
 - interfaccia selezionabile in Italiano, Español o English;
 - profilo, XP e statistiche salvati localmente;
 - vittoria, sconfitta e pausa;

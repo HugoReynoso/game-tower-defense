@@ -27,7 +27,7 @@ export class SoundManager{
   static startGameMusic(){
     this.stopSynthMusic();
     if(!this.gameTrack){
-      this.gameTrack=new Audio('assets/hopeful-documentary.mp3');this.gameTrack.loop=true;this.gameTrack.preload='auto';
+      this.gameTrack=new Audio(new URL('assets/hopeful-documentary.mp3',document.baseURI).href);this.gameTrack.loop=true;this.gameTrack.preload='auto';
       this.gameTrack.dataset.gameMusic='true';this.gameTrack.style.display='none';document.body.appendChild(this.gameTrack);
     }
     this.refreshMusic();this.gameTrack.play().catch(()=>undefined);
@@ -37,6 +37,16 @@ export class SoundManager{
     if(!this.gameTrack)return;
     this.gameTrack.pause();this.gameTrack.currentTime=0;this.gameTrack.remove();this.gameTrack=null;
   }
+
+  static toggleGameMute(){
+    const p=PreferenceStore.load();p.mute=!p.mute;
+    if(!p.mute&&p.music<.05)p.music=.5;
+    PreferenceStore.save(p);this.refreshMusic();
+    if(!p.mute)this.startGameMusic();
+    return p.mute;
+  }
+
+  static gameMusicMuted(){const p=PreferenceStore.load();return p.mute||p.music<.05}
 
   static startMusic(){
     if(this.gameTrack){this.refreshMusic();this.gameTrack.play().catch(()=>undefined);return}
@@ -65,6 +75,6 @@ export class SoundManager{
   static refreshMusic(){
     const p=PreferenceStore.load(),volume=p.mute?0:p.music;
     if(this.musicGain&&this.context)this.musicGain.gain.setTargetAtTime(volume*.55,this.context.currentTime,.08);
-    if(this.gameTrack){this.gameTrack.muted=p.mute;this.gameTrack.volume=Math.min(1,volume*.8)}
+    if(this.gameTrack){this.gameTrack.muted=p.mute;this.gameTrack.volume=Math.min(1,volume)}
   }
 }
