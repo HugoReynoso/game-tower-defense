@@ -18,6 +18,8 @@ export class CampaignGameScene extends ModernGameScene {
 
   create() {
     super.create();
+    SoundManager.startGameMusic();
+    this.events.once('shutdown',()=>SoundManager.stopGameMusic());
     const e=this.textures.get('enemySheet');
     if(!e.has('ghost')) {
       e.add('ghost',0,0,390,400,390); e.add('firebeast',0,390,390,450,390);
