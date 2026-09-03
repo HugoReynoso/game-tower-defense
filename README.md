@@ -2,6 +2,8 @@
 
 <p align="center"><strong>Un tower defense fantasy originale, mobile-first e giocabile direttamente nel browser.</strong></p>
 
+[![Green Valley Guardians — Play, Defend, Upgrade](public/assets/repository-preview.png)](https://github.com/HugoReynoso/game-tower-defense)
+
 <p align="center">
   <a href="https://hugoreynoso.github.io/game-tower-defense/"><strong>🎮 Gioca alla demo</strong></a>
   · <a href="#avvio-locale">Avvio locale</a>
